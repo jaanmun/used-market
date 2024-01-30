@@ -20,12 +20,14 @@ const Input: React.FC<InputProps> = ({ id, label, type = 'text', disabled, forma
         id={id}
         disabled={disabled}
         {...register(id, { required })}
+        placeholder=""
         type={type}
         className={`
                w-full 
                p-4 
                pt-6 
                font-light 
+               border-2
                bg-white 
                rounded-md 
                outline-none 
@@ -33,7 +35,7 @@ const Input: React.FC<InputProps> = ({ id, label, type = 'text', disabled, forma
                disabled: opacity-70 
                disabled: cursor-not-allowed 
                ${formatPrice ? 'pl-9' : 'pl-4'} 
-               ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}}
+               ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
                ${errors[id] ? 'focus: border-rose-500' : 'focus: border-black'}
           `}
       />
@@ -54,7 +56,9 @@ const Input: React.FC<InputProps> = ({ id, label, type = 'text', disabled, forma
           peer-focus: -translate-y-4
           ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
       `}
-      ></label>
+      >
+        {label}
+      </label>
     </div>
   );
 };
