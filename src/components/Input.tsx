@@ -32,14 +32,15 @@ const Input: React.FC<InputProps> = ({ id, label, type = 'text', disabled, forma
                rounded-md 
                outline-none 
                transition 
-               disabled: opacity-70 
-               disabled: cursor-not-allowed 
+               disabled:opacity-70 
+               disabled:cursor-not-allowed 
                ${formatPrice ? 'pl-9' : 'pl-4'} 
                ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
-               ${errors[id] ? 'focus: border-rose-500' : 'focus: border-black'}
+               ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
           `}
       />
       <label
+        htmlFor={id}
         className={`
           absolute
           text-md
@@ -50,10 +51,10 @@ const Input: React.FC<InputProps> = ({ id, label, type = 'text', disabled, forma
           z-10
           origin-[0]
           ${formatPrice ? 'left-9' : 'left-4'}
-          peer-placeholder-shown: scale-100
-          peer-placeholder-shown: translate-y-0
-          peer-focus: scale-75
-          peer-focus: -translate-y-4
+          peer-placeholder-shown:scale-100
+          peer-placeholder-shown:translate-y-0
+          peer-focus:scale-75
+          peer-focus:-translate-y-4
           ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
       `}
       >

@@ -38,7 +38,7 @@ const LoginPage = () => {
         <h1 className="text-2xl">Login</h1>
         <Input id="email" label="Email" disabled={isLoading} register={register} errors={errors} required />
         <Input id="password" label="Password" type="password" disabled={isLoading} register={register} errors={errors} required />
-        <Button label="Register" />
+        <Button label="Login" />
         <div className="text-center">
           <p className="text-gray-400">
             Not a member?{' '}
