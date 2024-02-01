@@ -46,7 +46,10 @@ const RegisterPage = () => {
         <Button label="Register" />
         <div className="text-center">
           <p className="text-gray-400">
-            Already a member? <Link href="/auth/login" className="text-black hover:underline">Login</Link>
+            Already a member?{' '}
+            <Link href="/auth/login" className="text-black hover:underline">
+              Login
+            </Link>
           </p>
         </div>
       </form>
