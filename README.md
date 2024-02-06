@@ -14,6 +14,9 @@
 // HTTP 통신 패키지
 "axios": "^1.6.7"
 
+// 이미지 업로드 처리를 위해 활용한 패키지
+"next-cloudinary": "^5.20.0",
+
 // 백엔드 관련 패키지
 "prisma": "^5.8.1"
 
@@ -83,3 +86,10 @@ SSR에서 유저 세션 데이터 가져오는 방법
    ```
 
 3. `getServerSession()` 함수의 첫 번째 인자로 전달된 authOptions는 `[...nextauth].ts` 파일에서 호출하여 가져온다.
+
+### .env 환경변수 설정 시 알아야 할 사항
+
+- 환경변수가 브라우저에 노출되어야 하는 경우 환경변수명 앞에 `NEXT_PUBLIC`을 붙어주어야 한다. 예를 들어 다음과 같다.
+  - ```bash
+    NEXT_PUBLIC_VARIABLE_NAME="value"
+    ```
