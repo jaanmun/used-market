@@ -6,6 +6,8 @@ import ImageUpload from '@/components/ImageUpload';
 import Input from '@/components/Input';
 import React, { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { categories } from '@/components/categories/Categories';
+import CategoryInput from '@/components/categories/CategoryInput';
 
 const ProductUploadPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +31,7 @@ const ProductUploadPage = () => {
   });
 
   const imageSrc = watch('imageSrc');
+  const category = watch('category');
 
   const onSubmit: SubmitHandler<FieldValues> = data => {};
 
@@ -59,7 +62,19 @@ const ProductUploadPage = () => {
           max-h-[50vh] 
           overflow-y-auto"
           >
-            {/* Category */}
+            {categories.map(item => {
+              return (
+                <div key={item.label} className="col-span-1">
+                  <CategoryInput
+                    onClick={() => setCustomValue('category', category)}
+                    selected={category === item.path}
+                    label={item.label}
+                    icon={item.icon}
+                    path={item.path}
+                  />
+                </div>
+              );
+            })}
           </div>
           <hr />
           {/* KakaoMap */}
