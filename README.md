@@ -17,6 +17,9 @@
 // 이미지 업로드 처리를 위해 활용한 패키지
 "next-cloudinary": "^5.20.0",
 
+// kakao maps
+"react-kakao-maps-sdk": "^1.1.26"
+
 // 백엔드 관련 패키지
 "prisma": "^5.8.1"
 
