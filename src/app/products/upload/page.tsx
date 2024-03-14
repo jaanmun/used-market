@@ -9,8 +9,11 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { categories } from '@/components/categories/Categories';
 import CategoryInput from '@/components/categories/CategoryInput';
 import dynamic from 'next/dynamic';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const ProductUploadPage = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -40,7 +43,21 @@ const ProductUploadPage = () => {
     ssr: false,
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = data => {};
+  const onSubmit: SubmitHandler<FieldValues> = data => {
+    setIsLoading(true);
+
+    axios
+      .post('/api/products', data)
+      .then(response => {
+        router.push(`/products/${response.data.id}`);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value);
@@ -62,18 +79,18 @@ const ProductUploadPage = () => {
 
           <div
             className="
-          grid 
-          grid-cols-1 
-          md:grid-cols-2 
-          gap-3 
-          max-h-[50vh] 
-          overflow-y-auto"
+            grid 
+            grid-cols-1 
+            md:grid-cols-2 
+            gap-3 
+            max-h-[50vh] 
+            overflow-y-auto"
           >
             {categories.map(item => {
               return (
                 <div key={item.label} className="col-span-1">
                   <CategoryInput
-                    onClick={() => setCustomValue('category', category)}
+                    onClick={category => setCustomValue('category', category)}
                     selected={category === item.path}
                     label={item.label}
                     icon={item.icon}
