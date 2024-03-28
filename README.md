@@ -20,6 +20,9 @@
 // kakao maps
 "react-kakao-maps-sdk": "^1.1.26"
 
+// UI / notifications
+"react-toastify": "^10.0.5"
+
 // 백엔드 관련 패키지
 "prisma": "^5.8.1"
 

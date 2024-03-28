@@ -2,6 +2,7 @@ import { User } from '@prisma/client';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
+import { toast } from 'react-toastify';
 
 interface UseFavorite {
   productId: string;
@@ -19,7 +20,12 @@ const useFavorite = ({ productId, currentUser }: UseFavorite) => {
   const toggleFavorite = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
 
-    if (!currentUser) return;
+    if (!currentUser) {
+      toast.warn('먼저 로그인을 해주세요.');
+      return;
+    }
+
+    console.log('currentUser', currentUser);
 
     try {
       let request;
@@ -38,7 +44,15 @@ const useFavorite = ({ productId, currentUser }: UseFavorite) => {
        * Router Refresh를 이용하여 화면 업데이트 해주면 된다.
        */
       router.refresh();
-    } catch (error) {}
+
+      if (hasFavorite) {
+        toast.success('성공적으로 제거되었습니다.');
+      } else {
+        toast.success('성공적으로 추가되었습니다.');
+      }
+    } catch (error) {
+      toast.error('실패하였습니다.');
+    }
   };
 
   return {
